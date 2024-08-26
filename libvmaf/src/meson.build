@@ -302,6 +302,11 @@ if is_cuda_enabled
     cuda_dependency += cuda_drv_api_dependency
     cuda_dependency += cuda_rt_api_dependency
 
+
+    # XXX work around for my env
+    cuda_dependency += declare_dependency(link_args : ['-L/usr/local/cuda/lib64/stubs/'])
+
+
     cuda_flags = []
     if get_option('buildtype').startswith('debug')
         cuda_flags += ['-DCUDA_DEBUG', '-lineinfo']
